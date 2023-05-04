@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const Redis = require('ioredis');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-
 const swaggerDocument = YAML.load('swagger.yaml');
 
 require('dotenv/config');
@@ -46,22 +45,18 @@ app.use((req, res, next) => {
 
 // Import Routes
 const gamesRoute = require('./routes/games');
-
 app.use('/games', gamesRoute);
 
 const teamsRoute = require('./routes/teams');
-
 app.use('/teams', teamsRoute);
 
 const gamesTeamsRoute = require('./routes/game-team');
-
 app.use('/game-team', gamesTeamsRoute);
 
 app.get('/', (req, res) => {
   res.send('<h1>Games Schedule</h1>');
 });
 
-/* eslint no-console: "off" */
 // Start server
 app.listen(3000, () => {
   console.log('Server running at http://localhost:3000/');
