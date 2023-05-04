@@ -59,6 +59,7 @@ router.delete('/:id', trackRequests, getGameTeam, async (req, res) => {
   }
 });
 
+// Middleware для отримання гри та команди
 async function getGameTeam(req, res, next) {
   try {
     const gameTeam = await GameTeam.findById(req.params.id).populate('game team')
